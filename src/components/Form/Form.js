@@ -13,14 +13,23 @@ class Form extends Component {
         }
     }
 
+    handleChangeFor = (event, propertyName) => {
+        this.setState({
+            newCount: {
+                ...this.state.newCount,
+                [propertyName]: event.target.value,
+            }
+        });
+    }
+
     render() {
         return (
             <div>
                 <h3>This is the form</h3>
                 <pre>{JSON.stringify(this.state)}</pre>
                 <form onSubmit={this.addNewCount}>
-                    <input type='text' value={this.state.newCount.type} onChange={this.handleChange} />
-                    <input type='text' value={this.state.newCount.startCount} onChange={this.handleChange} />
+                    <input onChange={(event) => this.handleChangeFor(event, 'type')} />
+                    <input onChange={(event) => this.handleChangeFor(event, 'startCount')} />
                     <input type='submit' value='Add New Count' />
                 </form>
             </div>
