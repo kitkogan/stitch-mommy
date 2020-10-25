@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-// const mapStateToProps = reduxState => ({
-//     reduxState,
-// });
+const mapStateToProps = reduxState => ({
+    reduxState,
+});
 
 class Form extends Component {
     state = {
@@ -11,7 +11,7 @@ class Form extends Component {
             type: '',
             startCount: ''
         },
-        countList: [],
+        // countList: [],
     }
 
     handleChangeFor = (event, propertyName) => {
@@ -27,13 +27,13 @@ class Form extends Component {
     addNewCount = event => {
         event.preventDefault();
         console.log('submit clicked')
-        // this.props.dispatch({ type: 'ADD_COUNT', payload: this.state.newCount })
+        this.props.dispatch({ type: 'ADD_COUNT', payload: this.state.newCount })
         this.setState({
             newCount: {
                 type: '',
                 startCount: '',
             },
-            countList: [...this.state.countList, this.state.newCount],
+            // countList: [...this.state.countList, this.state.newCount],
         });
         console.log('state', this.state);
     }
@@ -57,4 +57,4 @@ class Form extends Component {
 
 
 
-export default Form;
+export default connect(mapStateToProps)(Form);

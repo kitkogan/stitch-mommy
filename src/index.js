@@ -1,13 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
+import logger from 'redux-logger'
+
+const countList = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_COUNT':
+      return [ ...state, action.payload ]
+    default:
+      return state;
+  }
+};
+
+const store = createStore(
+  combineReducers({ countList }),
+  applyMiddleware(logger),
+);
 
 ReactDOM.render(
+  <Provider store={store}>
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
