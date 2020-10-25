@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-// const Form = ({ saveCount }) => {
-//     const { value, reset, onChange } = useInputState('');
+const mapStateToProps = reduxState => ({
+    reduxState,
+});
 
-// };
+class Form extends Component {
+    state = {
+        newCount: {
+            type: '',
+            startCount: ''
+        }
+    }
 
-function Form() {
-    return (
-        <div className="Form">
-          
-            <p>
-              FORM!
-            </p>
-          
-        </div>
-      );
+    render() {
+        return (
+            <div>
+                <h3>This is the form</h3>
+                <pre>{JSON.stringify(this.state)}</pre>
+                <form onSubmit={this.addNewCount}>
+                    <input type='text' value={this.state.newCount.type} onChange={this.handleChange} />
+                    <input type='text' value={this.state.newCount.startCount} onChange={this.handleChange} />
+                    <input type='submit' value='Add New Count' />
+                </form>
+            </div>
+        );
+    }
+    
 }
+
 
 
 
