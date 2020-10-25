@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Form from '../Form/Form';
-// import List from '../List/List';
+import List from '../List/List';
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
       </header>
 
       <Form />
+      <List />
     </div>
   );
 }

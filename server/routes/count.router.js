@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const queryText = 'SELECT type, startCount FROM new_stitch';
+    const queryText = 'SELECT type, start_count FROM new_stitch';
     pool.query(queryText)
         .then((result) => { res.send(result.rows); })
         .catch((err) => {
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const newCount = req.body;
-    const queryText = `INSERT INTO new_stitch ("type", "startcount")
+    const queryText = `INSERT INTO new_stitch ("type", "start_count")
                       VALUES ($1, $2)`;
     const queryValues = [
       newCount.type,
