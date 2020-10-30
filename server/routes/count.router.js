@@ -4,7 +4,8 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const queryText = 'SELECT type, start_count FROM new_stitch';
+  //call to get type and start count from db
+    const queryText = `SELECT * FROM "new_stitch";`;
     pool.query(queryText)
         .then((result) => { res.send(result.rows); })
         .catch((err) => {

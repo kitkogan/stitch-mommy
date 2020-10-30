@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+// import axios from 'axios';
 
 const mapStateToProps = reduxState => ({
     reduxState,
 });
 
 class List extends Component {
-    // componentDidMount() {
-    //     this.getCountList();
-    // }
+    componentDidMount() {
+        this.getCountList();
+    }
+
+    // getCountList = () => {
+    //     axios.get('/api/count')
+    //       .then( response => {
+    //         this.props.dispatch({ type: `SET_COUNT_LIST`, payload: response.data });
+    //         console.log('this is response:', response.data);
+    //       })
+    //       .catch( error => {
+    //         console.log(error);
+    //         alert(`Could not get count at this time. Try again later.`);
+    //       })
+    //   }
 
     getCountList = () => {
-        axios.get('/api/count')
-          .then( response => {
-            this.props.dispatch({ type: `SET_COUNT_LIST`, payload: response.data });
-          })
-          .catch( error => {
-            console.log(error);
-            alert(`Could not get count at this time. Try again later.`);
-          })
-      }
+      this.props.dispatch({ type: 'GET_COUNT' });
+    }
 
     render() {
         return (
